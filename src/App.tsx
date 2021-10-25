@@ -11,6 +11,7 @@ import { setContext } from "apollo-link-context";
 
 import Users from "./components/Users";
 import Landing from "./components/Landing";
+import IsAuthenticated from "./components/IsAuthenticated";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -41,8 +42,9 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Users />
+            <Landing />
           </Route>
+
           <Route path="/landing">
             <Landing />
           </Route>
@@ -52,6 +54,11 @@ const App = () => {
           <Route path="/login">
             <Login />
           </Route>
+          <IsAuthenticated>
+            <Route path="/users">
+              <Users />
+            </Route>
+          </IsAuthenticated>
         </Switch>
       </Router>
     </ApolloProvider>
