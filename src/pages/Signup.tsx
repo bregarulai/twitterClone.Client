@@ -2,7 +2,9 @@ import React from "react";
 import { gql, useMutation } from "@apollo/client";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
+import logo from "../styles/assets/logo.png";
 
 const SIGNUP_MUTATION = gql`
   mutation signup($name: String, $email: String!, $password: String!) {
@@ -44,8 +46,9 @@ const Signup = () => {
     ),
   });
   return (
-    <div>
-      <h1>Signup</h1>
+    <div className="container" style={{ marginTop: "15rem" }}>
+      <img src={logo} alt="logo" className="logo" style={{ width: "5rem" }} />
+      <h3>Sign up to Fake Twitter</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -72,9 +75,15 @@ const Signup = () => {
             placeholder="Confirm Password"
           />
           <ErrorMessage name="confirmedPassword" component={"div"} />
-          <button type="submit">Signup</button>
+          <button type="submit" className="login-button">
+            <span>Sign up</span>
+          </button>
         </Form>
       </Formik>
+      <div className="register container">
+        <h4>Already have an account?</h4>
+        <Link to="/login">Login</Link>
+      </div>
     </div>
   );
 };
